@@ -1,0 +1,46 @@
+static int findMergeNode(SinglyLinkedListNode head1, SinglyLinkedListNode head2) {
+
+    SinglyLinkedListNode newHead1 = head1;
+    SinglyLinkedListNode newHead2 = head2;
+    int list1Length = 0;
+    int list2Length = 0;
+    while(newHead1!=null){
+       newHead1 = newHead1.next;
+       list1Length++;
+    }
+    while(newHead2!=null){
+       newHead2 = newHead2.next;
+       list2Length++;
+    }
+    
+    //System.out.println("list1Length"+list1Length+":list2Length"+list2Length);
+    int difference =0;
+    if(list1Length>list2Length){
+       difference = list1Length -  list2Length;
+       //System.out.println("Difference:"+difference);
+       while(difference>0){
+        head1 = head1.next;
+        difference--;
+       }
+    }else if(list1Length<list2Length){
+        difference = list2Length -  list1Length;
+        //System.out.println("Difference:"+difference);
+        while(difference>0){
+           head2 = head2.next;
+           difference--;
+       }
+    } 
+
+    
+    while(head1!=null && head2!=null){
+        if(head1 == head2){
+            return head1.data;
+        }
+
+        head1 = head1.next;
+        head2 = head2.next;
+    }
+
+    return 0;
+
+    }
