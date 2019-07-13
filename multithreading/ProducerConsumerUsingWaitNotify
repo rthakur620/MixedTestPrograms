@@ -1,0 +1,99 @@
+package com.test.threading;
+
+public class ProducerConsumerMain {
+
+	public static void main(String[] args) {
+		
+		ProducerConsumer2 pc2 = new ProducerConsumer2();
+		Producer2 producer2 = new Producer2(pc2);
+		Consumer2 consumer2 = new Consumer2(pc2);
+		
+		producer2.start();
+		consumer2.start();
+	}
+}
+
+
+------------------------
+package com.test.threading;
+
+public class ProducerConsumer2 {
+
+	public boolean isProducerProduced = false;
+	
+	public void put(int number) throws InterruptedException{
+		synchronized (this) {
+			if(isProducerProduced)
+				wait();
+			
+			System.out.println("Item Produced: "+number);
+			isProducerProduced = true;
+			// Notify the same thread which is waiting for this lock
+			notify();
+		}
+		
+	}
+	
+	public void get(int number) throws InterruptedException{
+		synchronized (this) {
+			if(!isProducerProduced)
+				wait();
+			
+			System.out.println("Item Consumed :"+number);
+			isProducerProduced = false;
+			notify();
+		}
+		
+	}
+
+}
+
+
+-------------------------------
+package com.test.threading;
+
+public class Producer2 extends Thread{
+
+	private ProducerConsumer2 producerConsumer2;
+	
+	public Producer2(ProducerConsumer2 producerConsumer2) {
+		this.producerConsumer2 = producerConsumer2;
+	}
+
+	@Override
+	public void run() {
+		for (int i = 0; i < 10; i++) {
+			try {
+				producerConsumer2.put(i);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+}
+
+
+----------------------------------------
+
+package com.test.threading;
+
+public class Consumer2 extends Thread{
+
+	private ProducerConsumer2 producerConsumer2; 
+	public Consumer2(ProducerConsumer2 producerConsumer2) {
+		this.producerConsumer2 = producerConsumer2;
+	}
+
+	@Override
+	public void run() {
+		for (int i = 0; i < 10; i++) {
+			try {
+				producerConsumer2.get(i);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+}
