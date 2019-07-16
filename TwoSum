@@ -1,0 +1,24 @@
+// Given an array and a target , we have to find two numbers from array which sums = target 
+// We can not use same number and input would have exactly one solution
+// Return indices of the array
+
+public int[] twoSum(int[] nums, int target) {
+        
+        
+        for(int i=0;i<nums.length;i++){
+            for(int j=0;j<nums.length;j++){
+                int a = nums[i];
+                int b = nums[j];
+                if(i!=j){
+                    if(a+b==target){
+                        int[] arr = {i,j};
+                        return arr;
+                    }
+                }
+                
+            }
+        }
+        
+        return null;
+        
+    }
