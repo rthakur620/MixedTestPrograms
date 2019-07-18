@@ -1,0 +1,49 @@
+public ListNode mergeTwoLists(ListNode p, ListNode q) {
+        // 1. Check boundry conditions
+        if(p==null){
+            return q;
+        }
+        
+        if(q==null){
+            return p;
+        }
+        
+        // 2. find which list starting point is smaller and assign that to merged head
+        ListNode s = null;
+        ListNode mergedNode = null;
+        
+        if(p.val<=q.val){
+            s = p;
+            p = p.next;
+        }else {
+            s = q;
+            q = q.next; 
+        }
+        
+        mergedNode = s;
+        
+        
+        // 3. Iterate both lists untill one of them is not null 
+        while(p!=null && q!=null){
+            if(p.val<=q.val){
+                s.next = p;
+                s = p;
+                p = p.next;
+            }else{
+                s.next = q;
+                s = q;
+                q = q.next;
+            }
+        }
+        
+        // 4. If one list is exhoust  means finished then assign s next to another list. 
+        if(q==null){
+            s.next = p;
+        }
+        
+        if(p==null){
+            s.next = q;
+        }
+        
+        return mergedNode;
+    }
