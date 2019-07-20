@@ -1,0 +1,23 @@
+// Change Integer Number digit
+// If input is 123123123 then output should be 120120120 , replace 3 with 0
+
+private static int changeNumber(int number, int k) {
+		
+		int newNumber = 0;
+		int multiplyCounter = 1;
+		while(number>0){
+			int reminder = number%10;
+			if(reminder==k){
+				newNumber = newNumber + 0 * multiplyCounter;
+			}else{
+				newNumber = newNumber + reminder * multiplyCounter;
+			}
+			
+			number = number/10;
+			multiplyCounter = multiplyCounter * 10; 
+		}
+		
+		return newNumber;
+		
+		
+	}
