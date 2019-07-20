@@ -1,0 +1,27 @@
+ // Reverse Integer 
+ // Number can be negative
+ // While reversing it can exceed Integer.Max_Value limit, we need to take care of these two things
+        
+    public static int reverse(int x) {
+        
+        boolean negativetrue = false;
+        if(x<0){
+            x = -x;
+            negativetrue = true;
+        }
+        int reminder = 0;
+        long newNumber = 0;
+        while(x>0){
+            reminder = x%10;
+            if((newNumber*10 + reminder) > Integer.MAX_VALUE){
+            	System.out.println(0);
+            	return 0;
+            }
+            newNumber = (newNumber * 10) + reminder;
+            System.out.println(newNumber);
+            x = x/10;
+        }
+        
+        int returningNumber = (int)newNumber;
+        return negativetrue ? -returningNumber : returningNumber;
+    }
