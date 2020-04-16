@@ -1,10 +1,14 @@
-######## Issue-ID ############################
-issue-id
+######## Add/Update/Delete#Issue-ID ############################
+Update#issue-id
+
 ######## Subject(50 characters max)############################
 Subject
+
 ######## Problem(72 characters max)############################
 Problem
-# Problem, Task, Reason for Commit
+
+# Solution, Reason for Commit #################################
 Solution
-# Solution or List of Changes
+
+# List of Changes #############################################
 Note
