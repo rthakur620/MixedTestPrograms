@@ -1,6 +1,10 @@
-# Proper comment
-Comment here 
-
-
-# Issue ID 
-issue-id here
+######## Issue-ID ############################
+issue-id
+######## Subject(50 characters max)############################
+Subject
+######## Problem(72 characters max)############################
+Problem
+# Problem, Task, Reason for Commit
+Solution
+# Solution or List of Changes
+Note
